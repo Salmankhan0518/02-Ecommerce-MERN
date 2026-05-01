@@ -47,6 +47,7 @@ export default function Signup() {
           />
           <input
             name="email"
+            type="email"
             placeholder="Enter Email"
             value={form.email}
             onChange={handleChange}

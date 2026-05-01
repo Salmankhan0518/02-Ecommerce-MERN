@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import api from "../api/axios";
 import { useState } from "react";
 
-export default function Lodin() {
+export default function Login() {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -12,7 +12,7 @@ export default function Lodin() {
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
-  const handleChane = (e) => {
+  const handleChange = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -21,6 +21,21 @@ export default function Lodin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const res = await api.post("/auth/login", form)
+
+      //Save Token to localStorage
+      localStorage.setItem("token", res.data.token)
+      
+      setMsg("Login Successful")
+      //Redirect to Home page
+      setTimeout(() => {
+        navigate("/");
+      }, 1000)
+    } catch (error) {
+      setMsg(error.response?.data?.message || "An error occurred")
+    }
   };
 
   return (

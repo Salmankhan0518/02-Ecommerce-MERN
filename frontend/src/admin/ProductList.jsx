@@ -28,7 +28,7 @@ export default function ProductList() {
     return (
         <div className="max-w-4xl mx-auto mt-10">
             <div className="flex justify-center items-center mb-6">
-                <h2 className="text-2xl font-bold">Product List</h2>
+                <h2 className="text-2xl font-bold px-32">Product List</h2>
                 <Link to="/admin/products/add" className="bg-blue-500 text-white px-4 rounded hover:bg-blue-600">Add New Product</Link>
             </div>
 
@@ -44,13 +44,13 @@ export default function ProductList() {
                 <tbody>
                     {
                         products.map((product) => (
-                            <tr key={product.id} className="text-center">
-                                <td className="border border-gray-200 px-4 py-2">{product.title}</td> 
-                                <td className="border border-gray-200 px-4 py-2">{product.price}</td>
-                                <td className="border border-gray-200 px-4 py-2">{product.stock}</td>
+                            <tr key={product._id} className="text-center">
+                                <td className="border border-gray-200 px-4 py-2">{product?.title}</td> 
+                                <td className="border border-gray-200 px-4 py-2">{product?.price}</td>
+                                <td className="border border-gray-200 px-4 py-2">{product?.stock}</td>
                                 <td className="border border-gray-200 px-4 py-2">
-                                    <Link to={`/admin/products/edit/${product.id}`} className="text-2xl">Edit</Link>
-                                    <button onClick={() => deletedProduct(product.id)} className="text-red-500 hover:underline">Delete</button>
+                                    <Link to={`/admin/products/update/${product._id}`} className="text-lg px-2">Edit</Link>
+                                    <button onClick={() => deletedProduct(product._id)} className="text-red-500 hover:underline">Delete</button>
                                 </td>
                             </tr>
                         ))

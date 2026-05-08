@@ -1,5 +1,5 @@
 import express from "express";
-import { addToCart, removeItem, updateQuantity, getCart} from "../controllers/cartController";
+import { addToCart, removeItem, updateQuantity, getCart} from "../controllers/cartController.js";
 
 const router = express.Router();
 
@@ -13,6 +13,6 @@ router.post('/remove', removeItem);
 router.post('/update', updateQuantity);
 
 // Get user cart
-router.post('/:userId', getCart);
+router.get('/:userId', getCart);
 
 export default router;
